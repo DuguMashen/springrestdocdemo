@@ -50,30 +50,6 @@
     <build>
         <finalName>springrestdocdemo</finalName>
         <plugins>
-
-            <plugin>
-                <groupId>org.asciidoctor</groupId>
-                <artifactId>asciidoctor-maven-plugin</artifactId>
-                <version>2.0.0</version>
-                <executions>
-                    <execution>
-                        <id>generate-docs</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>process-asciidoc</goal>
-                        </goals>
-                        <configuration>
-                            <sourceDocumentName>index.adoc</sourceDocumentName>
-                            <backend>html</backend>
-                            <attributes>
-                                <snippets>${project.build.directory}/snippets</snippets>
-                            </attributes>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
