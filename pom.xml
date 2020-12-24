@@ -46,13 +46,15 @@
             <version>1.2.46</version>
         </dependency>
     </dependencies>
-
     <build>
         <finalName>springrestdocdemo</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.dugumashen.springrestdocdemo.SpringrestdocdemoApplication</mainClass>
+                </configuration>
             </plugin>
         </plugins>
     </build>
