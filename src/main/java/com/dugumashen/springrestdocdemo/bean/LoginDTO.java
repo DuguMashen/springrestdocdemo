@@ -1,9 +1,9 @@
 package com.dugumashen.springrestdocdemo.bean;
 
-import com.alibaba.fastjson.JSONObject;
+import java.time.LocalDateTime;
 
 /**
- * @author
+ * @author jinhq
  */
 public class LoginDTO {
 
@@ -24,10 +24,5 @@ public class LoginDTO {
 
     public void setPwd(String pwd) {
         this.pwd = pwd;
-    }
-
-    @Override
-    public String toString() {
-        return JSONObject.toJSONString(this);
     }
 }
