@@ -203,4 +203,10 @@ public class IndexController {
 
         return map;
     }
+
+    @RequestMapping("/calc")
+    public Object calc() {
+        int c = 5 / 0;
+        return c;
+    }
 }
