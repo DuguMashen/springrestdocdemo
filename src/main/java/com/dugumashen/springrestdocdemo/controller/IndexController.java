@@ -9,10 +9,12 @@ import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.text.html.Option;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.time.LocalDateTime;
@@ -20,6 +22,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -35,6 +38,17 @@ public class IndexController {
     @RequestMapping("/index")
     public String index() {
         return "success";
+    }
+
+    @RequestMapping("/app")
+    public Map<String,Object> app(@RequestBody(required = false) Map map){
+        Object value=map.get("key");
+        Map<String,Object> objectMap=new HashMap<>();
+        objectMap.put("status","error");
+        if(value!=null){
+            objectMap.put("status","ok");
+        }
+        return objectMap;
     }
 
     @RequestMapping("/queryAll")
@@ -83,7 +97,8 @@ public class IndexController {
         }
         logger.info("数据查询结束:{}", current());
         pageNum = pageInfo.getNextPage();
-        logger.info("hasNext:{},nextPage:{},pageNum:{},pageSize:{},endRow:{}", pageInfo.isHasNextPage(), pageNum, pageInfo.getPageNum(), pageInfo.getPageSize(), pageInfo.getEndRow());
+        logger.info("hasNext:{},nextPage:{},pageNum:{},pageSize:{},endRow:{}", pageInfo.isHasNextPage(), pageNum,
+                pageInfo.getPageNum(), pageInfo.getPageSize(), pageInfo.getEndRow());
         logger.info("生成表格开始:{}", current());
         workbook = PoiUtil.generateSXSSFWorkbook("第" + pageInfo.getPageNum() + "页", title, data, workbook);
         logger.info("生成表格结束:{}", current());
