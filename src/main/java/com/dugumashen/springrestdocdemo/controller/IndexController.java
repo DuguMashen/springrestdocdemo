@@ -52,8 +52,8 @@ public class IndexController {
     }
 
     @RequestMapping("/queryAll")
-    public List<User> s() {
-        List<User> u = userService.queryAllByLimit(0, 10);
+    public List<User> s(Integer offset,Integer limit) {
+        List<User> u = userService.queryAllByLimit(offset, limit);
         return u;
     }
 
